@@ -42,6 +42,8 @@ from transformers import (
     OpenAIGPTLMHeadModel,
     OpenAIGPTTokenizer,
     OPTForCausalLM,
+    OpenLMForCausalLM,
+    GPTNeoXTokenizerFast,
     TransfoXLLMHeadModel,
     TransfoXLTokenizer,
     XLMTokenizer,
@@ -72,6 +74,7 @@ MODEL_CLASSES = {
     "bloom": (BloomForCausalLM, BloomTokenizerFast),
     "llama": (LlamaForCausalLM, LlamaTokenizer),
     "opt": (OPTForCausalLM, GPT2Tokenizer),
+    "openlm": (OpenLMForCausalLM, GPTNeoXTokenizerFast)
 }
 
 # Padding text to help Transformer-XL and XLNet with short prompts as proposed by Aman Rusia

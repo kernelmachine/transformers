@@ -615,6 +615,7 @@ _import_structure = {
     "models.xlm_roberta_xl": ["XLM_ROBERTA_XL_PRETRAINED_CONFIG_ARCHIVE_MAP", "XLMRobertaXLConfig"],
     "models.xlnet": ["XLNET_PRETRAINED_CONFIG_ARCHIVE_MAP", "XLNetConfig"],
     "models.xmod": ["XMOD_PRETRAINED_CONFIG_ARCHIVE_MAP", "XmodConfig"],
+    "models.openlm": ["OpenLMConfig"],
     "models.yolos": ["YOLOS_PRETRAINED_CONFIG_ARCHIVE_MAP", "YolosConfig"],
     "models.yoso": ["YOSO_PRETRAINED_CONFIG_ARCHIVE_MAP", "YosoConfig"],
     "onnx": [],
@@ -1821,6 +1822,12 @@ else:
             "GPT2Model",
             "GPT2PreTrainedModel",
             "load_tf_weights_in_gpt2",
+        ]
+    )
+    _import_structure["models.openlm"].extend(
+        [
+            "OpenLMForCausalLM",
+            "OpenLMModel",
         ]
     )
     _import_structure["models.gpt_bigcode"].extend(
@@ -4161,17 +4168,8 @@ if TYPE_CHECKING:
         AutoProcessor,
         AutoTokenizer,
     )
-    from .models.autoformer import (
-        AUTOFORMER_PRETRAINED_CONFIG_ARCHIVE_MAP,
-        AutoformerConfig,
-    )
-    from .models.bark import (
-        BarkCoarseConfig,
-        BarkConfig,
-        BarkFineConfig,
-        BarkProcessor,
-        BarkSemanticConfig,
-    )
+    from .models.autoformer import AUTOFORMER_PRETRAINED_CONFIG_ARCHIVE_MAP, AutoformerConfig
+    from .models.bark import BarkCoarseConfig, BarkConfig, BarkFineConfig, BarkProcessor, BarkSemanticConfig
     from .models.bart import BartConfig, BartTokenizer
     from .models.beit import BEIT_PRETRAINED_CONFIG_ARCHIVE_MAP, BeitConfig
     from .models.bert import (
@@ -4308,11 +4306,7 @@ if TYPE_CHECKING:
     from .models.efficientformer import EFFICIENTFORMER_PRETRAINED_CONFIG_ARCHIVE_MAP, EfficientFormerConfig
     from .models.efficientnet import EFFICIENTNET_PRETRAINED_CONFIG_ARCHIVE_MAP, EfficientNetConfig
     from .models.electra import ELECTRA_PRETRAINED_CONFIG_ARCHIVE_MAP, ElectraConfig, ElectraTokenizer
-    from .models.encodec import (
-        ENCODEC_PRETRAINED_CONFIG_ARCHIVE_MAP,
-        EncodecConfig,
-        EncodecFeatureExtractor,
-    )
+    from .models.encodec import ENCODEC_PRETRAINED_CONFIG_ARCHIVE_MAP, EncodecConfig, EncodecFeatureExtractor
     from .models.encoder_decoder import EncoderDecoderConfig
     from .models.ernie import ERNIE_PRETRAINED_CONFIG_ARCHIVE_MAP, ErnieConfig
     from .models.ernie_m import ERNIE_M_PRETRAINED_CONFIG_ARCHIVE_MAP, ErnieMConfig
@@ -4420,11 +4414,7 @@ if TYPE_CHECKING:
     from .models.mpt import MPT_PRETRAINED_CONFIG_ARCHIVE_MAP, MptConfig
     from .models.mra import MRA_PRETRAINED_CONFIG_ARCHIVE_MAP, MraConfig
     from .models.mt5 import MT5Config
-    from .models.musicgen import (
-        MUSICGEN_PRETRAINED_CONFIG_ARCHIVE_MAP,
-        MusicgenConfig,
-        MusicgenDecoderConfig,
-    )
+    from .models.musicgen import MUSICGEN_PRETRAINED_CONFIG_ARCHIVE_MAP, MusicgenConfig, MusicgenDecoderConfig
     from .models.mvp import MvpConfig, MvpTokenizer
     from .models.nat import NAT_PRETRAINED_CONFIG_ARCHIVE_MAP, NatConfig
     from .models.nezha import NEZHA_PRETRAINED_CONFIG_ARCHIVE_MAP, NezhaConfig
@@ -4432,6 +4422,7 @@ if TYPE_CHECKING:
     from .models.nystromformer import NYSTROMFORMER_PRETRAINED_CONFIG_ARCHIVE_MAP, NystromformerConfig
     from .models.oneformer import ONEFORMER_PRETRAINED_CONFIG_ARCHIVE_MAP, OneFormerConfig, OneFormerProcessor
     from .models.openai import OPENAI_GPT_PRETRAINED_CONFIG_ARCHIVE_MAP, OpenAIGPTConfig, OpenAIGPTTokenizer
+    from .models.openlm import OpenLMConfig
     from .models.opt import OPTConfig
     from .models.owlvit import (
         OWLVIT_PRETRAINED_CONFIG_ARCHIVE_MAP,
@@ -5481,11 +5472,7 @@ if TYPE_CHECKING:
             ElectraPreTrainedModel,
             load_tf_weights_in_electra,
         )
-        from .models.encodec import (
-            ENCODEC_PRETRAINED_MODEL_ARCHIVE_LIST,
-            EncodecModel,
-            EncodecPreTrainedModel,
-        )
+        from .models.encodec import ENCODEC_PRETRAINED_MODEL_ARCHIVE_LIST, EncodecModel, EncodecPreTrainedModel
         from .models.encoder_decoder import EncoderDecoderModel
         from .models.ernie import (
             ERNIE_PRETRAINED_MODEL_ARCHIVE_LIST,
@@ -6022,6 +6009,7 @@ if TYPE_CHECKING:
             OpenAIGPTPreTrainedModel,
             load_tf_weights_in_openai_gpt,
         )
+        from .models.openlm import OpenLMForCausalLM, OpenLMModel
         from .models.opt import (
             OPT_PRETRAINED_MODEL_ARCHIVE_LIST,
             OPTForCausalLM,
@@ -6211,17 +6199,8 @@ if TYPE_CHECKING:
             RoFormerPreTrainedModel,
             load_tf_weights_in_roformer,
         )
-        from .models.rwkv import (
-            RWKV_PRETRAINED_MODEL_ARCHIVE_LIST,
-            RwkvForCausalLM,
-            RwkvModel,
-            RwkvPreTrainedModel,
-        )
-        from .models.sam import (
-            SAM_PRETRAINED_MODEL_ARCHIVE_LIST,
-            SamModel,
-            SamPreTrainedModel,
-        )
+        from .models.rwkv import RWKV_PRETRAINED_MODEL_ARCHIVE_LIST, RwkvForCausalLM, RwkvModel, RwkvPreTrainedModel
+        from .models.sam import SAM_PRETRAINED_MODEL_ARCHIVE_LIST, SamModel, SamPreTrainedModel
         from .models.segformer import (
             SEGFORMER_PRETRAINED_MODEL_ARCHIVE_LIST,
             SegformerDecodeHead,
@@ -7061,11 +7040,7 @@ if TYPE_CHECKING:
             TFRoFormerModel,
             TFRoFormerPreTrainedModel,
         )
-        from .models.sam import (
-            TF_SAM_PRETRAINED_MODEL_ARCHIVE_LIST,
-            TFSamModel,
-            TFSamPreTrainedModel,
-        )
+        from .models.sam import TF_SAM_PRETRAINED_MODEL_ARCHIVE_LIST, TFSamModel, TFSamPreTrainedModel
         from .models.segformer import (
             TF_SEGFORMER_PRETRAINED_MODEL_ARCHIVE_LIST,
             TFSegformerDecodeHead,
